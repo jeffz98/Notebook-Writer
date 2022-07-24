@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 // Helper method for generating unique ids
 const uuid = require('uuid');
@@ -50,33 +51,30 @@ app.get('/api/notes', (req, res) => {
 // });
 
 // POST request to add a review
-// app.post('/api/notes', (req, res) => {
-//   // Log that a POST request was received
-//   console.info(`${req.method} request received to add a review`);
+app.post('/api/notes', (req, res) => {
+  // Log that a POST request was received
+  console.info(`${req.method} request received to add a review`);
 
-//   // Destructuring assignment for the items in req.body
-//   const { id, title, text } = req.body;
-  
-//   if (title && text) {
- 
-//     const newNote = {
-//       // req.body.title,
-//       text,
-//       id: uuid(),
-//     };
-//     notes.push(newNote);
+  // Destructuring assignment for the items in req.body
+  const { id, title, text } = req.body;
 
-//     const response = {
-//       status: 'success',
-//       body: newNote,
-//     };
+    const newNote = {
+      id: Math.floor(Math.random()* 1000000),
+      title,
+      text,
+      
+    };
+    notes.push(newNote);
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes));
 
-//     console.log(response);
-//     res.json(response);
-//   } else {
-//     res.json('Error in posting review');
-//   }
-// });
+    const response = {
+      status: 'success',
+      body: newNote,
+    };
+
+    console.log(response);
+    res.json(response);
+});
 
 // // GET request for upvotes
 // app.get('/api/upvotes', (req, res) => {
