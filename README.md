@@ -4,6 +4,10 @@
 
 My motivation to build this note taker was to practice and implement my knowledge of routes, express.js, and heroku. I wanted to deploy a working application to heroku and hopefully use it to keep track of tasks that I need to finish.
 
+## Deployment Link
+
+Link to visit app deployed at Heroku: https://immense-peak-32683.herokuapp.com/
+
 ## Table of Contents 
 
 - [Installation](#installation)
@@ -22,10 +26,10 @@ After that the code is now on your local machine and you are free to copy it to 
 ## Usage
 
 Demo Gif:
-![Demo Gif](./Images/Portfolio-gif.gif)
+![Demo Gif](./Images/Note-Writer.gif)
 
 Screenshot:
-![Demo SS](./Images/Portfolio-gif.gif)
+![Demo SS](./Images/Note-WriterSS.png)
 
 ## Credits
 
