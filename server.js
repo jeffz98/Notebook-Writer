@@ -1,7 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-// Helper method for generating unique ids
 const notes = require('./db/db.json');
 
 const PORT = process.env.PORT || 3001;
@@ -20,7 +19,7 @@ app.get('/', (req, res) =>
 app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
-// GET request for reviews
+// GET request for notes
 app.get('/api/notes', (req, res) => {
   // Send a message to the client
 
@@ -29,27 +28,8 @@ app.get('/api/notes', (req, res) => {
   
 });
 
-// GET request for a single review
-// GET - /api/reviews/13
-// app.get('/api/reviews/:review_id', (req, res) => {
-//   console.log(req.query.list)
-//   console.log("req.body", req.body);
-//   console.log("req.params.review_id", req.params.review_id);
-//   if (req.body && req.params.review_id) {
-//     console.info(`${req.method} request received to get a single a review`);
-//     const reviewId = req.params.review_id;
-//     for (let i = 0; i < reviewList.length; i++) {
-//       const currentReview = reviewList[i];
-//       if (currentReview.review_id === reviewId) {
-//         res.json(currentReview);
-//         return;
-//       }
-//     }
-//     res.json('Review ID not found');
-//   }
-// });
 
-// POST request to add a review
+// POST request to add a note
 app.post('/api/notes', (req, res) => {
   // Log that a POST request was received
   console.info(`${req.method} request received to add a review`);
@@ -58,6 +38,7 @@ app.post('/api/notes', (req, res) => {
   const { id, title, text } = req.body;
 
     const newNote = {
+      // uuid 
       id: Math.floor(Math.random()* 1000000),
       title,
       text,
@@ -75,16 +56,6 @@ app.post('/api/notes', (req, res) => {
     res.json(response);
 });
 
-// // GET request for upvotes
-// app.get('/api/upvotes', (req, res) => {
-//   // Inform the client
-//   res.json(`${req.method} request received to retrieve upvote count`);
-
-//   // Log our request to the terminal
-//   console.info(`${req.method} request received to retrieve upvote count`);
-// });
-
-// Post request to upvote a review
 
 
 app.listen(PORT, () =>
